@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Expense Tracker</title>
+    {% load static %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'tracker/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <header class="text-center my-4">
+            <h1 class="display-4">Welcome to the Expense Tracker</h1>
+            <p class="lead">Instructions: Use this application to track your expenses. Add transactions, view your spending trends, and manage your budget effectively.</p>
+            {% if user.is_authenticated %}
+                <p>Hello, {{ user.username }}! Welcome.</p>
+                <form method="post" action="{% url 'logout' %}">
+                    {% csrf_token %}
+                    <button class="btn btn-danger" type="submit">Logout</button>
+                </form>
+            {% else %}
+                <p>Still in need? <a href="{% url 'login' %}" class="btn btn-primary">Login here</a>.</p>
+            {% endif %}
+        </header>
+
+        <nav class="mb-4">
+            <a href="{% url 'add_transaction' %}" class="btn btn-secondary">Add Transaction</a>
+            <a href="{% url 'chart_view' %}" class="btn btn-info">View Chart</a>
+        </nav>
+
+        <section>
+            <h2 class="mb-3">Recent Transactions</h2>
+            <ul class="list-group">
+                {% for transaction in transactions %}
+                    <li class="list-group-item">{{ transaction.date }} - {{ transaction.type }}: {{ transaction.amount }} - {{ transaction.category }} - {{ transaction.description }}</li>
+                {% empty %}
+                    <li class="list-group-item">No transactions available.</li>
+                {% endfor %}
+            </ul>
+        </section>
+    </div>
+</body>
+
+</html>

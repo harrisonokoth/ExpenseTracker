@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Expense Chart</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'tracker/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Expense Chart</h1>
+            <a href="{% url 'index' %}">Back to Home</a>
+        </header>
+
+        <section>
+            <h2>Expenses by Category</h2>
+            <img src="data:image/png;base64,{{ graph }}" alt="Expense Chart">
+        </section>
+    </div>
+</body>
+</html>a<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Expense Chart</title>
+    {% load static %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'tracker/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <header class="text-center my-4">
+            <h1 class="display-4">Expense Chart</h1>
+        </header>
+
+        <div class="text-center">
+            <img src="data:image/png;base64,{{ graph }}" alt="Expense Chart">
+        </div>
+
+        <footer class="mt-4 text-center">
+            <a href="{% url 'index' %}" class="btn btn-secondary">Back to Home</a>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+
